@@ -1,0 +1,24 @@
+name: BankSystem
+version: '${version}'
+main: com.github.majisyou.banksystem.BankSystem
+api-version: 1.19
+softdepend: [Vault]
+authors: [ majisyou ]
+
+commands:
+  emerald:
+    description: bank
+    usage: you dont open bank
+    permission: Bank.user
+    aliases: bank
+
+  bank:
+    description: bank
+    usage: you dont open bank
+    permission: Bank.user
+    aliases: emerald
+
+  pay:
+    description: send
+    usage: /pay <player> <emerald>
+    permission: Bank.user
