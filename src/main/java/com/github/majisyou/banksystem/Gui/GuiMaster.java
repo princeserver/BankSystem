@@ -2,6 +2,7 @@ package com.github.majisyou.banksystem.Gui;
 
 import com.github.majisyou.banksystem.BankSystem;
 import com.github.majisyou.banksystem.System.BankMainSystem;
+import com.github.majisyou.banksystem.System.SoundManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -24,18 +25,23 @@ public class GuiMaster {
         ItemStack EmeraldPane = GuiItem.EmeraldPane();
         ItemStack AddPane = GuiItem.AddPane();
         ItemStack TakePane = GuiItem.TakePane();
-        ItemStack Emerald = GuiItem.Emerald();
-        ItemStack EmeraldBlock = GuiItem.EmeraldBlock();
-        ItemStack LiquidEmerald = GuiItem.LiquidEmerald();
+        ItemStack AddEmerald = GuiItem.AddEmerald();
+        ItemStack AddEmeraldBlock = GuiItem.AddEmeraldBlock();
+        ItemStack AddLiquidEmerald = GuiItem.AddLiquidEmerald();
+        ItemStack TakeEmerald = GuiItem.TakeEmerald();
+        ItemStack TakeEmeraldBlock = GuiItem.TakeEmeraldBlock();
+        ItemStack TakeLiquidEmerald = GuiItem.TakeLiquidEmerald();
+
 
         ItemStack[] GuiContainer = new ItemStack[]{ BackGround, BackGround, BackGround, Number, Number, EmeraldPane, BackGround, BackGround, BackGround,
-                                                    BackGround, BackGround, AddPane, BackGround, BackGround, Emerald, EmeraldBlock, LiquidEmerald, BackGround,
-                                                    BackGround, Emerald, EmeraldBlock, LiquidEmerald, BackGround, BackGround, TakePane, BackGround, BackGround,
+                                                    BackGround, BackGround, AddPane, BackGround, BackGround, TakeEmerald, TakeEmeraldBlock, TakeLiquidEmerald, BackGround,
+                                                    BackGround, AddEmerald, AddEmeraldBlock, AddLiquidEmerald, BackGround, BackGround, TakePane, BackGround, BackGround,
                                                     BackGround, BackGround, BackGround, Number, Number, EmeraldPane, BackGround, BackGround, BackGround,};
         inventory.setContents(GuiContainer);
         InventoryEmerald(inventory,player);
         BankEmerald(inventory,player);
         player.openInventory(inventory);
+        SoundManager.OpenEnder(player);
     }
 
     public static void InventoryEmerald(Inventory inventory,Player player){
