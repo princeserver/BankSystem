@@ -3,6 +3,7 @@ package com.github.majisyou.banksystem.Event;
 import com.github.majisyou.banksystem.BankSystem;
 import com.github.majisyou.banksystem.Gui.GuiMaster;
 import com.github.majisyou.banksystem.System.BankMainSystem;
+import com.github.majisyou.banksystem.System.SoundManager;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -30,18 +31,22 @@ public class InventoryClick implements Listener {
                         int wallet = BankMainSystem.getWalletMoney((Player) event.getWhoClicked());
                         if(event.getSlot()==11){
                             GuiMaster.deposit(event.getClickedInventory(),(Player) event.getWhoClicked());
+                            SoundManager.Click((Player) event.getWhoClicked());
                             plugin.getLogger().info("(BS)"+event.getWhoClicked().getName()+"のBankエメラルドが"+bank+"から"+(int) BankMainSystem.getBankMoney((Player) event.getWhoClicked())+"になった。");
                             plugin.getLogger().info("(BS)"+event.getWhoClicked().getName()+"のWalletエメラルドが"+wallet+"から"+BankMainSystem.getWalletMoney((Player) event.getWhoClicked())+"になった。");
                         }
                         if(event.getSlot()==24){
                             GuiMaster.withdraw(event.getClickedInventory(),(Player) event.getWhoClicked());
+                            SoundManager.Click((Player) event.getWhoClicked());
                             plugin.getLogger().info("(BS)"+event.getWhoClicked().getName()+"のBankエメラルドが"+bank+"から"+(int) BankMainSystem.getBankMoney((Player) event.getWhoClicked())+"になった。");
                             plugin.getLogger().info("(BS)"+event.getWhoClicked().getName()+"のWalletエメラルドが"+wallet+"から"+BankMainSystem.getWalletMoney((Player) event.getWhoClicked())+"になった。");
                         }
                         if(event.getSlot()==19||event.getSlot()==20||event.getSlot()==21){
+                            SoundManager.Click((Player) event.getWhoClicked());
                             GuiMaster.Eme_deposit(event.getClickedInventory(),(Player) event.getWhoClicked(),event.getCurrentItem());
                         }
                         if(event.getSlot()==14||event.getSlot()==15||event.getSlot()==16){
+                            SoundManager.Click((Player) event.getWhoClicked());
                             GuiMaster.Eme_withdraw(event.getClickedInventory(),(Player) event.getWhoClicked(),event.getCurrentItem());
                         }
                         if(Math.abs(bank - (int) BankMainSystem.getBankMoney((Player) event.getWhoClicked())) != Math.abs(wallet - BankMainSystem.getWalletMoney((Player) event.getWhoClicked()))){
@@ -51,7 +56,8 @@ public class InventoryClick implements Listener {
                         }
                     }
                     if(event.getClick().equals(ClickType.RIGHT)){
-                        if(event.getSlot()==14||event.getSlot()==15||event.getSlot()==16||event.getSlot()==19||event.getSlot()==20||event.getSlot()==21){
+                        if(event.getSlot()==19||event.getSlot()==20||event.getSlot()==21){
+                            SoundManager.Click((Player) event.getWhoClicked());
                             Integer changeRate = 0;
                             NamespacedKey key = new NamespacedKey(plugin,"changeRate");
                             ItemMeta itemMeta = event.getCurrentItem().getItemMeta();
@@ -90,6 +96,48 @@ public class InventoryClick implements Listener {
                                 }
                             }
                         }
+
+                        if(event.getSlot()==14||event.getSlot()==15||event.getSlot()==16){
+                            SoundManager.Click((Player) event.getWhoClicked());
+                            Integer changeRate = 0;
+                            NamespacedKey key = new NamespacedKey(plugin,"changeRate");
+                            ItemMeta itemMeta = event.getCurrentItem().getItemMeta();
+                            PersistentDataContainer pdc = itemMeta.getPersistentDataContainer();
+                            if(!pdc.has(key)){
+                                pdc.set(key,PersistentDataType.INTEGER,1);
+                                itemMeta.setDisplayName(ChatColor.WHITE +"左クリックで"+1+"個引き出す。右クリックで個数の変更");
+                                event.getCurrentItem().setItemMeta(itemMeta);
+                            }
+                            changeRate = pdc.get(key, PersistentDataType.INTEGER);
+                            switch (changeRate){
+                                case 1->{
+                                    pdc.set(key,PersistentDataType.INTEGER,8);
+                                    itemMeta.setDisplayName(ChatColor.WHITE +"左クリックで"+8+"個引き出す。右クリックで個数の変更");
+                                    event.getCurrentItem().setItemMeta(itemMeta);
+                                }
+                                case 8->{
+                                    pdc.set(key,PersistentDataType.INTEGER,16);
+                                    itemMeta.setDisplayName(ChatColor.WHITE +"左クリックで"+16+"個引き出す。右クリックで個数の変更");
+                                    event.getCurrentItem().setItemMeta(itemMeta);
+                                }
+                                case 16->{
+                                    pdc.set(key,PersistentDataType.INTEGER,32);
+                                    itemMeta.setDisplayName(ChatColor.WHITE +"左クリックで"+32+"個引き出す。右クリックで個数の変更");
+                                    event.getCurrentItem().setItemMeta(itemMeta);
+                                }
+                                case 32->{
+                                    pdc.set(key,PersistentDataType.INTEGER,64);
+                                    itemMeta.setDisplayName(ChatColor.WHITE +"左クリックで"+64+"個引き出す。右クリックで個数の変更");
+                                    event.getCurrentItem().setItemMeta(itemMeta);
+                                }
+                                case 64->{
+                                    pdc.set(key,PersistentDataType.INTEGER,1);
+                                    itemMeta.setDisplayName(ChatColor.WHITE +"左クリックで"+1+"個引き出す。右クリックで個数の変更");
+                                    event.getCurrentItem().setItemMeta(itemMeta);
+                                }
+                            }
+                        }
+
                     }
                 }
             }
