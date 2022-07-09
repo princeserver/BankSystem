@@ -2,7 +2,9 @@ package com.github.majisyou.banksystem;
 
 import com.github.majisyou.banksystem.Command.Cmd_Pay;
 import com.github.majisyou.banksystem.Command.Cmd_bank;
+import com.github.majisyou.banksystem.Command.Cmd_summonBanker;
 import com.github.majisyou.banksystem.Event.InventoryClick;
+import com.github.majisyou.banksystem.Event.PlayerRightClickBanker;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -42,10 +44,12 @@ public final class BankSystem extends JavaPlugin {
 
         //Event
         new InventoryClick(this);
+        new PlayerRightClickBanker(this);
 
         //command
         new Cmd_bank(this);
         new Cmd_Pay(this);
+        new Cmd_summonBanker(this);
 
         getLogger().info("BankSystemEnable");
         // Plugin startup logic
