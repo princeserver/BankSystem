@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 public class Cmd_Pay implements CommandExecutor {
     BankSystem plugin = BankSystem.getInstance();
-    public Cmd_Pay(BankSystem plugin){plugin.getCommand("pay").setExecutor(this);}
+    public Cmd_Pay(BankSystem plugin){plugin.getCommand("send").setExecutor(this);}
 
 
     @Override
@@ -24,6 +24,10 @@ public class Cmd_Pay implements CommandExecutor {
                 if(args[1].matches("-?\\d+")){
                     if(BankMainSystem.getBankMoney(player) >= Double.parseDouble(args[1])){
                         double sendMoney = Double.parseDouble(args[1]);
+                        if(sendMoney <= 0){
+                            sender.sendMessage("負の金額か0は送ることはできません");
+                            return true;
+                        }
                         OfflinePlayer player2 = plugin.getServer().getOfflinePlayer(args[0]);
                         if(player2.isOnline()){
                             if(player==player2){
@@ -38,9 +42,9 @@ public class Cmd_Pay implements CommandExecutor {
                         }else {
                             if(Arrays.stream(plugin.getServer().getOfflinePlayers()).toList().contains(player2)){
                                 BankMainSystem.removeBank(player,sendMoney);
-                                BankMainSystem.addBank((Player) player2,sendMoney);
+                                BankMainSystem.addBank(player2,sendMoney);
                                 player.sendMessage(ChatColor.WHITE+player2.getName()+"に"+ ChatColor.GREEN+sendMoney+"E"+ChatColor.WHITE+"送金した");
-
+                                return true;
                             }else {
                                 player.sendMessage(ChatColor.WHITE+"プレイヤーが見つからなかった");
                             }
