@@ -2,6 +2,7 @@ package com.github.majisyou.banksystem.Command;
 
 import com.github.majisyou.banksystem.BankSystem;
 import com.github.majisyou.banksystem.Gui.GuiMaster;
+import com.github.majisyou.banksystem.System.SoundManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,6 +24,7 @@ public class Cmd_bank implements CommandExecutor {
                 return false;
             }
             GuiMaster.OpenBankGui(player);
+            player.sendMessage("§a[情報]§f"+player.getName()+"様いらっしゃいませ。Prince銀行ダイレクトです");
         }else {
          sender.sendMessage("これはコンソールから打てない");
         }
