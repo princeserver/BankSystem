@@ -4,6 +4,7 @@ import com.github.majisyou.banksystem.BankSystem;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -14,7 +15,7 @@ public class BankMainSystem {
 
     private static BankSystem plugin = BankSystem.getInstance();
 
-    public static void addBank(Player player,double money){
+    public static void addBank(OfflinePlayer player, double money){
         Economy eco = BankSystem.getEconomy();
         eco.depositPlayer(player,money);
     }
