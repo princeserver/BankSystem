@@ -34,6 +34,7 @@ public class GuiItem {
         item.setItemMeta(itemMeta);
         return item;
     }
+
     public static ItemStack Number(Integer integer){
         ItemStack item = new ItemStack(Material.WHITE_STAINED_GLASS_PANE,1);
         ItemMeta itemMeta = item.getItemMeta();
@@ -88,6 +89,7 @@ public class GuiItem {
         item.setItemMeta(itemMeta);
         return item;
     }
+
     public static ItemStack TakePane(){
         ItemStack item = new ItemStack(Material.WHITE_STAINED_GLASS_PANE,1);
         ItemMeta itemMeta = item.getItemMeta();
@@ -97,7 +99,8 @@ public class GuiItem {
         item.setItemMeta(itemMeta);
         return item;
     }
-    public static ItemStack Emerald(){
+
+    public static ItemStack AddEmerald(){
         ItemStack item = new ItemStack(Material.EMERALD,1);
         ItemMeta itemMeta = item.getItemMeta();
         NamespacedKey key = new NamespacedKey(plugin,"changeRate");
@@ -109,7 +112,8 @@ public class GuiItem {
         item.setItemMeta(itemMeta);
         return item;
     }
-    public static ItemStack EmeraldBlock(){
+
+    public static ItemStack AddEmeraldBlock(){
         ItemStack item = new ItemStack(Material.EMERALD_BLOCK,1);
         ItemMeta itemMeta = item.getItemMeta();
         NamespacedKey key = new NamespacedKey(plugin,"changeRate");
@@ -121,7 +125,7 @@ public class GuiItem {
         item.setItemMeta(itemMeta);
         return item;
     }
-    public static ItemStack LiquidEmerald(){
+    public static ItemStack AddLiquidEmerald(){
         ItemStack item = new ItemStack(Material.REPEATING_COMMAND_BLOCK,1);
         ItemMeta itemMeta = item.getItemMeta();
         NamespacedKey key = new NamespacedKey(plugin,"changeRate");
@@ -133,6 +137,44 @@ public class GuiItem {
         item.setItemMeta(itemMeta);
         return item;
     }
+    public static ItemStack TakeEmerald(){
+        ItemStack item = new ItemStack(Material.EMERALD,1);
+        ItemMeta itemMeta = item.getItemMeta();
+        NamespacedKey key = new NamespacedKey(plugin,"changeRate");
+        PersistentDataContainer pdc = itemMeta.getPersistentDataContainer();
+        pdc.set(key,PersistentDataType.INTEGER,1);
+        String name = ChatColor.WHITE +"左クリックで"+1+"個引き出す。右クリックで個数の変更";
+        itemMeta.setDisplayName(name);
+//        itemMeta.setCustomModelData(3000);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
+
+    public static ItemStack TakeEmeraldBlock(){
+        ItemStack item = new ItemStack(Material.EMERALD_BLOCK,1);
+        ItemMeta itemMeta = item.getItemMeta();
+        NamespacedKey key = new NamespacedKey(plugin,"changeRate");
+        PersistentDataContainer pdc = itemMeta.getPersistentDataContainer();
+        pdc.set(key,PersistentDataType.INTEGER,1);
+        String name = ChatColor.WHITE +"左クリックで"+1+"個引き出す。右クリックで個数の変更";
+        itemMeta.setDisplayName(name);
+//        itemMeta.setCustomModelData(3000);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
+    public static ItemStack TakeLiquidEmerald(){
+        ItemStack item = new ItemStack(Material.REPEATING_COMMAND_BLOCK,1);
+        ItemMeta itemMeta = item.getItemMeta();
+        NamespacedKey key = new NamespacedKey(plugin,"changeRate");
+        PersistentDataContainer pdc = itemMeta.getPersistentDataContainer();
+        pdc.set(key,PersistentDataType.INTEGER,1);
+        String name = ChatColor.WHITE +"左クリックで"+1+"個引き出す。右クリックで個数の変更";
+        itemMeta.setDisplayName(name);
+        itemMeta.setCustomModelData(1000);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
+
     public static ItemStack EmeraldPane(){
         ItemStack item = new ItemStack(Material.WHITE_STAINED_GLASS_PANE,1);
         ItemMeta itemMeta = item.getItemMeta();
